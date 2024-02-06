@@ -1,24 +1,14 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Button,Typography } from '@mui/material'
+import React from 'react'
 import styled from 'styled-components'
 const Privacy = () => {
-  const [editState, setEditState] = useState(false);
-  const handleEdit = () => {
-    setEditState(true);
-  }
-  const handleSaveEdit = () => {
-    setEditState(false);
-  }
-  const handleCancelEdit = () => {
-    setEditState(false);
-  }
   return (
     <Root>
       <Box className='container'>
         <Typography className='header'>Privacy</Typography>
         <Box className='basic-info-list'>
           <Typography className='field-header'>Password</Typography>
-          <Button className='edit-btn' onClick={handleEdit}>Change Password</Button>
+          <Button className='edit-btn'>Change Password</Button>
         </Box>
       </Box>
     </Root>

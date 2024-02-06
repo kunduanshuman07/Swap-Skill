@@ -10,7 +10,7 @@ const ProfileDrawer = ({ setProfileTab, profileTab }) => {
         <Root>
             <Box className='container'>
                 <ListItem
-                    style={{ color: profileTab === "basicinfo" ? "white" : "#444444", backgroundColor: profileTab === "basicinfo" ? "#0072e5" : "" }}
+                    style={{ color: profileTab === "basicinfo" ? "white" : "#444444", backgroundColor: profileTab === "basicinfo" ? "#FF7426" : "" }}
                     className='list-item'
                     onClick={() => setProfileTab("basicinfo")}
                 >
@@ -20,7 +20,7 @@ const ProfileDrawer = ({ setProfileTab, profileTab }) => {
                     <Typography className='list-text'>Basic Info</Typography>
                 </ListItem>
                 <ListItem
-                    style={{ color: profileTab === "account" ? "white" : "#444444", backgroundColor: profileTab === "account" ? "#0072e5" : "" }}
+                    style={{ color: profileTab === "account" ? "white" : "#444444", backgroundColor: profileTab === "account" ? "#FF7426" : "" }}
                     className='list-item'
                     onClick={() => setProfileTab("account")}
                 >
@@ -30,7 +30,7 @@ const ProfileDrawer = ({ setProfileTab, profileTab }) => {
                     <Typography className='list-text'>Account</Typography>
                 </ListItem>
                 <ListItem
-                    style={{ color: profileTab === "privacy" ? "white" : "#444444", backgroundColor: profileTab === "privacy" ? "#0072e5" : "" }}
+                    style={{ color: profileTab === "privacy" ? "white" : "#444444", backgroundColor: profileTab === "privacy" ? "#FF7426" : "" }}
                     className='list-item'
                     onClick={() => setProfileTab("privacy")}
                 >

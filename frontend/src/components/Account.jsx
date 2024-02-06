@@ -1,60 +1,34 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
-import React, { useState, useEffect } from 'react'
+import { Box, Button, Typography } from '@mui/material'
+import React from 'react'
 import styled from 'styled-components'
-import axios from 'axios';
 const Account = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const [editState, setEditState] = useState({});
-  const [fieldValues, setFieldValues] = useState({});
-  
+
   const headersData = [
-    { key: 'username', label: 'IF username', defaultValue: user.username },
-    { key: 'email', label: 'Email', defaultValue: user.email },
+    { key: 'username', label: 'IF username', defaultValue: 'kundu_anshuman' },
+    { key: 'email', label: 'Email', defaultValue: 'kundu4coding@gmail.com' },
   ];
 
   const socialAccountsData = [
-    { key: 'github', label: 'Github', defaultValue: user.github },
-    { key: 'linkedin', label: 'LinkedIn', defaultValue: user.linkedin },
+    { key: 'github', label: 'Github', defaultValue: 'Github' },
+    { key: 'linkedin', label: 'LinkedIn', defaultValue: 'Linkedin' },
   ]
 
   const handleEdit = (key) => {
-    setEditState((prevState) => ({ ...prevState, [key]: true }));
-    setFieldValues((prevValues) => ({ ...prevValues, [key]: '' }));
-  };
 
-  const handleSaveEdit = async(key) => {
-    const updatedValue = fieldValues[key];
-    const {data} = await axios.patch(`http://localhost:3000/user/update-profile/${user._id}`, {key, value: updatedValue});
-    localStorage.setItem("user", JSON.stringify(data.updatedUser));
-    setEditState((prevState) => ({ ...prevState, [key]: false }));
   };
-
-  const handleCancelEdit = (key) => {
-    setEditState((prevState) => ({ ...prevState, [key]: false }));
-    setFieldValues((prevValues) => ({ ...prevValues, [key]: headersData.find((header) => header.key === key).defaultValue }));
-  };
-
-  const handleFieldChange = (key, value) => {
-    setFieldValues((prevValues) => ({ ...prevValues, [key]: value }));
-  };
-  useEffect(()=>{
-
-  },[fieldValues])
   return (
     <Root>
-       <Box className='container'>
+      <Box className='container'>
         <Typography className='header'>Account</Typography>
         {headersData.map((header) => (
           <Box key={header.key} className='basic-info-list'>
             <Typography className='field-header'>{header.label}</Typography>
-            {editState[header.key] ? (
-              <Box className='edit-box'>
+
+            {/* <Box className='edit-box'>
                 <TextField
                   placeholder={`Your ${header.label.toLowerCase()}`}
                   className='text-fields'
                   size='small'
-                  value={fieldValues[header.key]}
-                  onChange={(e) => handleFieldChange(header.key, e.target.value)}
                 />
                 <Box className='actions'>
                   <Button
@@ -73,23 +47,22 @@ const Account = () => {
                     Cancel
                   </Button>
                 </Box>
-              </Box>
-            ) : (
-              <>
-                <Typography className='field-details'>{fieldValues[header.key] || header.defaultValue}</Typography>
-                <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
-                  Edit
-                </Button>
-              </>
-            )}
+              </Box> */}
+
+            <>
+              <Typography className='field-details'>{header.defaultValue}</Typography>
+              <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
+                Edit
+              </Button>
+            </>
+
           </Box>
         ))}
         <Typography className='header'>Social Accounts</Typography>
         {socialAccountsData.map((header) => (
           <Box key={header.key} className='basic-info-list'>
             <Typography className='field-header'>{header.label}</Typography>
-            {editState[header.key] ? (
-              <Box className='edit-box'>
+            {/* <Box className='edit-box'>
                 <TextField
                   placeholder={`Your ${header.label.toLowerCase()}`}
                   className='text-fields'
@@ -114,15 +87,13 @@ const Account = () => {
                     Cancel
                   </Button>
                 </Box>
-              </Box>
-            ) : (
-              <>
-                <Typography className='field-details'>{fieldValues[header.key] || header.defaultValue}</Typography>
-                <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
-                  Edit
-                </Button>
-              </>
-            )}
+              </Box> */}
+            <Typography className='field-details'>{header.defaultValue}</Typography>
+            <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
+              Edit
+            </Button>
+
+
           </Box>
         ))}
       </Box>
