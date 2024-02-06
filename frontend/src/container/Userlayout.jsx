@@ -8,6 +8,7 @@ import TutorPage from "../pages/TutorPage";
 import ConnectPage from '../pages/ConnectPage';
 import ColabPage from '../pages/ColabPage';
 import ColabEditor from '../components/ColabEditor';
+import AccountProfilePage from '../pages/AccountProfilePage';
 const Userlayout = () => {
   return (
     <Root>
@@ -21,6 +22,7 @@ const Userlayout = () => {
             <Route path='/teach' element={<TeachPage />}/>
             <Route path='/colab' element={<ColabPage />}/>
             <Route path='/colab/:colabId' element={<ColabEditor />}/>
+            <Route path='/account' element={<AccountProfilePage />}/>
           </Routes>
         </div>
       </main>

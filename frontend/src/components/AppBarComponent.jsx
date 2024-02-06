@@ -22,6 +22,9 @@ export const AppBarComponent = ({ callFrom }) => {
     const handleColab = () => {
         navigate('/colab')
     }
+    const handleAccount = () => {
+        navigate('/account')
+    }
     return (
         <Root>
             <Box sx={{ display: 'flex' }}>
@@ -66,7 +69,7 @@ export const AppBarComponent = ({ callFrom }) => {
                                     </Box>
                                     <Box>
                                         <Tooltip title='My Profile'>
-                                            <IconButton className='avatar'>
+                                            <IconButton className='avatar' onClick={handleAccount}>
                                                 <Avatar style={{ width: "25px", height: "25px", backgroundColor: "#4D2C5E" }} />
                                             </IconButton>
                                         </Tooltip>
