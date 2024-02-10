@@ -16,7 +16,7 @@ const TutorComponent = () => {
   return (
     <Root>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item md={4}>
           <Card className='grid-cards'>
             <CardContent>
               <Box className='grid-items'>

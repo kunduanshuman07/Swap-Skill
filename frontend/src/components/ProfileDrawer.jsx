@@ -4,7 +4,6 @@ import { IconButton, ListItem, Typography } from '@mui/material';
 import styled from "styled-components"
 import InfoIcon from '@mui/icons-material/Info';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import SecurityIcon from '@mui/icons-material/Security';
 const ProfileDrawer = ({ setProfileTab, profileTab }) => {
     return (
         <Root>
@@ -28,16 +27,6 @@ const ProfileDrawer = ({ setProfileTab, profileTab }) => {
                         <AccountCircleIcon style={{ color: profileTab === "account" ? "white" : "#444444", fontSize: "20px" }} />
                     </IconButton>
                     <Typography className='list-text'>Account</Typography>
-                </ListItem>
-                <ListItem
-                    style={{ color: profileTab === "privacy" ? "white" : "#444444", backgroundColor: profileTab === "privacy" ? "#FF7426" : "" }}
-                    className='list-item'
-                    onClick={() => setProfileTab("privacy")}
-                >
-                    <IconButton size='small'>
-                        <SecurityIcon style={{ color: profileTab === "privacy" ? "white" : "#444444", fontSize: "20px" }} />
-                    </IconButton>
-                    <Typography className='list-text'>Privacy</Typography>
                 </ListItem>
             </Box>
         </Root>

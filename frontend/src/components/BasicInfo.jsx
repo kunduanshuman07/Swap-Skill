@@ -1,9 +1,18 @@
-import React from 'react';
-import { Box, Button, Typography} from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Button, Typography, TextField } from '@mui/material';
 import styled from 'styled-components';
 
 const BasicInfo = () => {
-
+  const [editMode, setEditMode] = useState({});
+  const handleSaveEdit = (key) => {
+    setEditMode((prevState) => ({ ...prevState, [key]: false }));
+  }
+  const handleCancelEdit = (key) => {
+    setEditMode((prevState) => ({ ...prevState, [key]: false }));
+  }
+  const handleEdit = (key) => {
+    setEditMode((prevState) => ({ ...prevState, [key]: true }));
+  };
   const headersData = [
     { key: 'name', label: 'Name', defaultValue: 'Anshuman Kundu' },
     { key: 'gender', label: 'Gender', defaultValue: 'Male' },
@@ -33,11 +42,37 @@ const BasicInfo = () => {
         {headersData.map((header) => (
           <Box key={header.key} className='basic-info-list'>
             <Typography className='field-header'>{header.label}</Typography>
-            <Typography className='field-details'>{header.defaultValue}</Typography>
-            <Button className='edit-btn'>
-              Edit
-            </Button>
-
+            {editMode[header.key] ? <Box className='edit-box'>
+              <TextField
+                placeholder={`Your ${header.label.toLowerCase()}`}
+                className='text-fields'
+                size='small'
+              />
+              <Box className='actions'>
+                <Button
+                  className='save-btn'
+                  onClick={() => handleSaveEdit(header.key)}
+                  variant='contained'
+                >
+                  Save
+                </Button>
+                <Button
+                  className='cancel-btn'
+                  onClick={() => handleCancelEdit(header.key)}
+                  variant='contained'
+                  style={{ backgroundColor: '#d7e7fa' }}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </Box> :
+              <>
+                <Typography className='field-details'>{header.defaultValue}</Typography>
+                <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
+                  Edit
+                </Button>
+              </>
+            }
           </Box>
         ))}
       </Box>
@@ -86,6 +121,7 @@ const Root = styled.div`
     .edit-box{
       display: flex;
       flex-direction: column;
+      margin-left: -30px;
     }
     .actions{
       display: flex;

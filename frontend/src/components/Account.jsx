@@ -1,20 +1,24 @@
-import { Box, Button, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Button, Typography, TextField } from '@mui/material'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 const Account = () => {
-
+  const [editMode, setEditMode] = useState({});
   const headersData = [
     { key: 'username', label: 'IF username', defaultValue: 'kundu_anshuman' },
     { key: 'email', label: 'Email', defaultValue: 'kundu4coding@gmail.com' },
   ];
-
   const socialAccountsData = [
     { key: 'github', label: 'Github', defaultValue: 'Github' },
     { key: 'linkedin', label: 'LinkedIn', defaultValue: 'Linkedin' },
   ]
-
+  const handleSaveEdit = (key) => {
+    setEditMode((prevState) => ({ ...prevState, [key]: false }));
+  }
+  const handleCancelEdit = (key) => {
+    setEditMode((prevState) => ({ ...prevState, [key]: false }));
+  }
   const handleEdit = (key) => {
-
+    setEditMode((prevState) => ({ ...prevState, [key]: true }));
   };
   return (
     <Root>
@@ -23,76 +27,71 @@ const Account = () => {
         {headersData.map((header) => (
           <Box key={header.key} className='basic-info-list'>
             <Typography className='field-header'>{header.label}</Typography>
-
-            {/* <Box className='edit-box'>
-                <TextField
-                  placeholder={`Your ${header.label.toLowerCase()}`}
-                  className='text-fields'
-                  size='small'
-                />
-                <Box className='actions'>
-                  <Button
-                    className='save-btn'
-                    onClick={() => handleSaveEdit(header.key)}
-                    variant='contained'
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    className='cancel-btn'
-                    onClick={() => handleCancelEdit(header.key)}
-                    variant='contained'
-                    style={{ backgroundColor: '#d7e7fa' }}
-                  >
-                    Cancel
-                  </Button>
-                </Box>
-              </Box> */}
-
-            <>
+            {editMode[header.key] ? <Box className='edit-box'>
+              <TextField
+                placeholder={`Your ${header.label.toLowerCase()}`}
+                className='text-fields'
+                size='small'
+              />
+              <Box className='actions'>
+                <Button
+                  className='save-btn'
+                  onClick={() => handleSaveEdit(header.key)}
+                  variant='contained'
+                >
+                  Save
+                </Button>
+                <Button
+                  className='cancel-btn'
+                  onClick={() => handleCancelEdit(header.key)}
+                  variant='contained'
+                  style={{ backgroundColor: '#d7e7fa' }}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </Box> : <>
               <Typography className='field-details'>{header.defaultValue}</Typography>
               <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
                 Edit
               </Button>
             </>
-
+            }
           </Box>
         ))}
         <Typography className='header'>Social Accounts</Typography>
         {socialAccountsData.map((header) => (
           <Box key={header.key} className='basic-info-list'>
             <Typography className='field-header'>{header.label}</Typography>
-            {/* <Box className='edit-box'>
-                <TextField
-                  placeholder={`Your ${header.label.toLowerCase()}`}
-                  className='text-fields'
-                  size='small'
-                  value={fieldValues[header.key]}
-                  onChange={(e) => handleFieldChange(header.key, e.target.value)}
-                />
-                <Box className='actions'>
-                  <Button
-                    className='save-btn'
-                    onClick={() => handleSaveEdit(header.key)}
-                    variant='contained'
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    className='cancel-btn'
-                    onClick={() => handleCancelEdit(header.key)}
-                    variant='contained'
-                    style={{ backgroundColor: '#d7e7fa' }}
-                  >
-                    Cancel
-                  </Button>
-                </Box>
-              </Box> */}
-            <Typography className='field-details'>{header.defaultValue}</Typography>
-            <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
-              Edit
-            </Button>
-
+            {editMode[header.key] ? <Box className='edit-box'>
+              <TextField
+                placeholder={`Your ${header.label.toLowerCase()}`}
+                className='text-fields'
+                size='small'
+              />
+              <Box className='actions'>
+                <Button
+                  className='save-btn'
+                  onClick={() => handleSaveEdit(header.key)}
+                  variant='contained'
+                >
+                  Save
+                </Button>
+                <Button
+                  className='cancel-btn'
+                  onClick={() => handleCancelEdit(header.key)}
+                  variant='contained'
+                  style={{ backgroundColor: '#d7e7fa' }}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            </Box> : <>
+              <Typography className='field-details'>{header.defaultValue}</Typography>
+              <Button className='edit-btn' onClick={() => handleEdit(header.key)}>
+                Edit
+              </Button>
+            </>}
 
           </Box>
         ))}
@@ -140,6 +139,7 @@ const Root = styled.div`
     .edit-box{
       display: flex;
       flex-direction: column;
+      margin-left: -40px;
     }
     .actions{
       display: flex;

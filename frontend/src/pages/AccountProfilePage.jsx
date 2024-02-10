@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import ProfileDrawer from "../components/ProfileDrawer";
 import BasicInfo from '../components/BasicInfo';
 import Account from '../components/Account';
-import Privacy from '../components/Privacy';
 const AccountProfilePage = () => {
   const [profileTab, setProfileTab] = useState('basicinfo');
   return (
@@ -35,7 +34,6 @@ const AccountProfilePage = () => {
           <Box className='tabs'>
             {profileTab === 'basicinfo' && <BasicInfo />}
             {profileTab === 'account' && <Account />}
-            {profileTab === 'privacy' && <Privacy />}
           </Box>
         </Box>
       </Box>
@@ -51,10 +49,12 @@ const Root = styled.div`
     cursor: pointer;
   }
   .top-container{
-    width: 100%;
+    width: 112.9%;
     height: 250px;
     background-color: #01264a;
     display: flex;
+    margin-left: -76px;
+    margin-top: -80px;
   }
   .bottom-container{
     display: flex;
@@ -70,7 +70,7 @@ const Root = styled.div`
     width: 120px;
     height: 120px;
     border-radius: 10px;
-    margin-top: 50px;
+    margin-top: 70px;
     margin-left: 130px;
   }
   .names{
