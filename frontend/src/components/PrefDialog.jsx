@@ -1,9 +1,31 @@
 import React, { useState } from 'react'
-import { Box, Button, TextField, Typography, Dialog, DialogContent } from '@mui/material'
+import { Box, Button, TextField, Typography, Dialog, DialogContent, MenuItem, IconButton } from '@mui/material'
 import styled from 'styled-components'
+import { Add } from '@mui/icons-material';
 
-const PrefDialog = ({setPrefDialog}) => {
+const skillOptions = [
+   {
+      label: "React.js",
+      value: "React.js"
+   },
+   {
+      label: "Node.js",
+      value: "Node.js"
+   },
+   {
+      label: "SQL",
+      value: "SQL",
+   },
+]
+
+
+const PrefDialog = ({ setPrefDialog }) => {
    const [skill, setSkill] = useState('');
+   const [skillList, setSkillList] = useState([]);
+   const handleAddSkill = () => {
+      setSkillList(prevSkills => [...prevSkills, skill]);
+      setSkill('');
+   }
    const handleExplore = () => {
       setPrefDialog(false);
    }
@@ -31,7 +53,20 @@ const PrefDialog = ({setPrefDialog}) => {
                            }}
                            fullWidth
                            onChange={(e) => setSkill(e.target.value)}
-                        />
+                           select
+                        >
+                           {skillOptions.map((options) => (
+                              <MenuItem key={options.value} value={options.value}>{options.label}</MenuItem>
+                           ))}
+                        </TextField>
+                        <IconButton size='small' className='add-btn' onClick={handleAddSkill}>
+                           <Add />
+                        </IconButton>
+                     </Box>
+                     <Box className='skill-list'>
+                        {skillList.map(skill => (
+                           <Button className='skill'>{skill}</Button>
+                        ))}
                      </Box>
                      <Box className='next'>
                         <Button className='next-button' variant='contained' color='inherit' onClick={handleExplore}>Start Learning</Button>
@@ -45,6 +80,26 @@ const PrefDialog = ({setPrefDialog}) => {
 }
 
 const Root = styled.div`
+.skill{
+   background-color: black;
+   color: white;
+   padding: 0px;
+   text-transform: none;
+   font-weight: bold;
+   font-size: 10px;
+   margin: 0px 5px;
+   &:hover{
+      background-color: black;
+      color: white;
+   }
+}
+.skill-list{
+   display: flex;
+   margin-top: 10px;
+}
+.add-btn{
+   margin: 15px 0px 0px 10px;
+}
  .container{
     display: flex;
   }
@@ -69,6 +124,7 @@ const Root = styled.div`
   .skill-field{
    margin: 20px auto 0px auto;
    width: 300px;
+   display: flex;
   }
   .next{
    margin: 40px auto 10px auto;
